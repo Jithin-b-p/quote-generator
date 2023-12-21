@@ -1,0 +1,132 @@
+:root {
+  --font-family: "Montserrat", sans-serif;
+}
+
+html {
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  background-color: #eee;
+  background-image: url(./assets/topography.svg);
+  color: #000;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  fill:#fff;
+}
+
+.quote-container {
+  max-width: 90rem;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.quote-text {
+  font-size: 4.4rem;
+}
+
+/* for larger quotes */
+.long-quote {
+  font-size: 3.2rem;
+}
+
+.fa-quote-left {
+  font-size: 6.4rem;
+}
+
+.quote-author {
+  margin-top: 1.5rem;
+  font-size: 3.2rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@media (max-width: 1000px) {
+  .quote-container {
+    margin-inline: 3rem;
+  }
+
+  .quote-text {
+    font-size: 4rem;
+  }
+
+  .fa-quote-left {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .quote-container {
+    margin-inline: 3rem;
+  }
+
+  .quote-text {
+    font-size: 2rem;
+  }
+
+  .fa-quote-left {
+    font-size: 3rem;
+  }
+
+  .quote-author {
+    font-size: 2.5rem;
+  }
+}
+
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  font-size: 1.92rem;
+  height: 3.2rem;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: #333;
+  outline: none;
+  padding: 0.5rem 1.8rem;
+  box-shadow: 0 0.35rem rgba(121, 121, 121, 0.7);
+  transition: all .5s;
+}
+
+button:hover {
+  cursor: pointer;
+  /* filter: brightness(120%); */
+  color: #000;
+  background-color: white;
+}
+
+button:hover svg {
+  fill: #000;
+}
+
+button:active {
+  transform: translateY(0.2rem);
+  box-shadow: 0 0.1rem rgba(255, 255, 255, 0.1);
+}
