@@ -17,8 +17,8 @@ function loading() {
 
 function showQuote() {
   // hide loader, show quoteContainer
-  loader.hidden = true;
-  quoteContainer.hidden = false;
+  // loader.hidden = true;
+  // quoteContainer.hidden = false;
 }
 
 // show new quote if the fetch is fullfilled.
