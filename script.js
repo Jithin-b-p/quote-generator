@@ -9,16 +9,19 @@ let data = [];
 let serverDown = false;
 
 // show loader
-function loading() {
+function showloadingSpinner() {
   // hide quoteContainer, show loader
   quoteContainer.hidden = true;
   loader.hidden = false;
 }
 
-function showQuote() {
+function removeLoadingSpinner() {
   // hide loader, show quoteContainer
-  // loader.hidden = true;
-  // quoteContainer.hidden = false;
+  if(!loader.hidden) {
+    loader.hidden = true;
+    quoteContainer.hidden = false;
+  }
+  
 }
 
 // show new quote if the fetch is fullfilled.
