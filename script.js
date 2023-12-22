@@ -3,12 +3,27 @@ const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
+const loader = document.getElementById("loader");
 
 let data = [];
 let serverDown = false;
 
+// show loader
+function loading() {
+  // hide quoteContainer, show loader
+  quoteContainer.hidden = true;
+  loader.hidden = false;
+}
+
+function showQuote() {
+  // hide loader, show quoteContainer
+  loader.hidden = true;
+  quoteContainer.hidden = false;
+}
+
 // show new quote if the fetch is fullfilled.
 function newQuote() {
+  loading();
   const quote = data[0].q;
   const author = data[0].a;
 
@@ -17,6 +32,7 @@ function newQuote() {
 
 // show new Quote if the fetch is failed.
 function newQuoteForServerDown() {
+  loading();
   // picking a random quote from data array.
   const quote = data[Math.floor(Math.random() * data.length)];
 
@@ -35,8 +51,8 @@ function renderQuoteAndAuthor(quote, author) {
   } else {
     quoteText.classList.remove("long-quote");
   }
-
   quoteText.textContent = quote;
+  showQuote();
 }
 
 // tweet a quote
@@ -47,25 +63,24 @@ function tweetQuote() {
 }
 
 // eventListener
-newQuoteBtn.addEventListener("click", serverDown? newQuote: quoteGenerator);
+newQuoteBtn.addEventListener("click", serverDown ? newQuote : quoteGenerator);
 twitterBtn.addEventListener("click", tweetQuote);
 
 // getting quote from API
 async function quoteGenerator() {
+  loading();
   const apiUrl =
     "https://cors-anywhere.herokuapp.com/https://zenquotes.io/api/random";
 
   try {
-
     const response = await fetch(apiUrl);
     data = await response.json();
     serverDown = false;
     newQuote();
-
   } catch (error) {
     // catch error here.
     serverDown = true;
-    console.error(error);
+    console.log(error);
     const localResponse = await fetch("./assets/data/quotes.json");
     data = await localResponse.json();
     newQuoteForServerDown();
