@@ -8,7 +8,6 @@ const loader = document.getElementById("loader");
 let data = [];
 let serverDown = false;
 
-// show loader
 function showloadingSpinner() {
   // hide quoteContainer, show loader
   quoteContainer.hidden = true;
@@ -26,7 +25,7 @@ function removeLoadingSpinner() {
 
 // show new quote if the fetch is fullfilled.
 function newQuote() {
-  loading();
+  showloadingSpinner();
   const quote = data[0].q;
   const author = data[0].a;
 
@@ -35,7 +34,7 @@ function newQuote() {
 
 // show new Quote if the fetch is failed.
 function newQuoteForServerDown() {
-  loading();
+  showloadingSpinner();
   // picking a random quote from data array.
   const quote = data[Math.floor(Math.random() * data.length)];
 
@@ -55,7 +54,7 @@ function renderQuoteAndAuthor(quote, author) {
     quoteText.classList.remove("long-quote");
   }
   quoteText.textContent = quote;
-  showQuote();
+  removeLoadingSpinner();
 }
 
 // tweet a quote
@@ -71,7 +70,7 @@ twitterBtn.addEventListener("click", tweetQuote);
 
 // getting quote from API
 async function quoteGenerator() {
-  loading();
+  showloadingSpinner();
   const apiUrl =
     "https://cors-anywhere.herokuapp.com/https://zenquotes.io/api/random";
 
